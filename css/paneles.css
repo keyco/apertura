@@ -21,3 +21,15 @@ select.btn{padding:9px 10px}
 #menu-agregar .opc{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 #menu-agregar .otra{display:flex;gap:6px}
 #menu-agregar input{flex:1;min-width:0;background:#0b1620;color:#dff;border:1px solid #2a5566;border-radius:8px;padding:8px;font:inherit}
+
+/* Pantalla de carga (lectura de los .zip) */
+#carga{position:fixed;inset:0;z-index:100;background:#06080f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center}
+#carga[hidden],#carga [hidden]{display:none}
+#carga h2{margin:0;font-size:20px;letter-spacing:6px;color:#4ef}
+#carga p{margin:0;max-width:460px;font-size:14px;color:#9ab}
+#carga .error{color:#ff6b6b}
+#carga .barra-carga{width:min(360px,80vw);height:8px;background:#12222c;border-radius:6px;overflow:hidden}
+#carga .barra-carga i{display:block;height:100%;width:0;background:#4ef;box-shadow:0 0 8px #4ef;transition:width .15s}
+#carga .soltar{display:flex;flex-direction:column;gap:4px;border:2px dashed #2a5566;border-radius:12px;padding:26px 36px;cursor:pointer;color:#dff}
+#carga .soltar:hover,#carga .soltar.sobre{border-color:#4ef;box-shadow:0 0 14px #4ef6}
+#carga .soltar small{color:#8aa}

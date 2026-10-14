@@ -6,7 +6,7 @@ CP.MISIONES = [
   { id: 'lote_verde',    nombre: 'Lote Poco común', desc: 'Consigue todas las cartas Poco comunes', tipo: 'lote', rareza: 'verde',    premio: 200 },
   { id: 'lote_azul',     nombre: 'Lote Raro',       desc: 'Consigue todas las cartas Raras',        tipo: 'lote', rareza: 'azul',     premio: 400 },
   { id: 'lote_morado',   nombre: 'Lote Épico',      desc: 'Consigue todas las cartas Épicas',       tipo: 'lote', rareza: 'morado',   premio: 800 },
-  { id: 'lote_amarillo', nombre: 'Lote Legendario', desc: 'Consigue las 10 cartas Legendarias',     tipo: 'lote', rareza: 'amarillo', premio: 1500 },
+  { id: 'lote_amarillo', nombre: 'Lote Legendario', desc: 'Consigue todas las cartas Legendarias',     tipo: 'lote', rareza: 'amarillo', premio: 1500 },
   { id: 'lote_rojo',     nombre: 'Lote Mítico',     desc: 'Consigue todas las cartas Míticas',      tipo: 'lote', rareza: 'rojo',     premio: 3000 },
   { id: 'cajas10',   nombre: 'Abridor',       desc: 'Abre 10 cajas',            tipo: 'cajas',       meta: 10, premio: 150 },
   { id: 'cajas50',   nombre: 'Maestro de cajas', desc: 'Abre 50 cajas',         tipo: 'cajas',       meta: 50, premio: 600 },

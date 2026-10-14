@@ -11,7 +11,7 @@ CP.Inv = (() => {
     quitar(id, k = 1) { d.cartas[id] = Math.max(0, (d.cartas[id] || 0) - k); guardar(); },
     cantidad: id => d.cartas[id] || 0,
     extras: id => Math.max(0, (d.cartas[id] || 0) - 1),
-    unicas: () => Object.values(d.cartas).filter(n => n > 0).length,
+    unicas: () => CP.CARTAS.filter(c => d.cartas[c.id] > 0).length,
     esencia: () => d.esencia,
     ganar(n) { d.esencia += n; guardar(); },
     gastar(n) { if (d.esencia < n) return false; d.esencia -= n; guardar(); return true; },

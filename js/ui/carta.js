@@ -10,7 +10,7 @@ CP.crearCarta = function (carta, { oculta = false, bloqueada = false } = {}) {
   const r = CP.rareza(carta.rareza), el = document.createElement('div');
   el.className = 'carta' + (oculta ? ' oculta' : '') + (bloqueada ? ' bloqueada' : '');
   el.style.setProperty('--c', r.color); el.dataset.rareza = r.id; el.title = carta.nombre;
-  el.innerHTML = `<div class="giro"><div class="cara"><img class="arte" src="${carta.img}" alt="${carta.nombre}" draggable="false">
+  el.innerHTML = `<div class="giro"><div class="cara"><img class="arte" src="${carta.img}" alt="${carta.nombre}" draggable="false" loading="lazy" decoding="async">
     <img class="marco" src="${r.marco}" alt="" draggable="false"><span class="etq">${r.nombre}</span></div><div class="dorso"></div></div>`;
   return el;
 };

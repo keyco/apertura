@@ -1,44 +1,8 @@
-// Lista de cartas. Edita nombre y rareza aquí (ids de rareza en config/rarezas.js).
+// Las cartas ya NO se listan a mano: se leen de los .zip al iniciar (core/cargador.js) y se reparten en rarezas (core/distribucion.js).
 window.CP = window.CP || {};
-CP.CARTAS = [
-  { id: 'c01', nombre: 'Personaje 01', rareza: 'amarillo', img: 'assets/cartas/c01.jpg' },
-  { id: 'c02', nombre: 'Personaje 02', rareza: 'rojo', img: 'assets/cartas/c02.jpg' },
-  { id: 'c03', nombre: 'Personaje 03', rareza: 'amarillo', img: 'assets/cartas/c03.jpg' },
-  { id: 'c04', nombre: 'Personaje 04', rareza: 'verde', img: 'assets/cartas/c04.jpg' },
-  { id: 'c05', nombre: 'Personaje 05', rareza: 'azul', img: 'assets/cartas/c05.jpg' },
-  { id: 'c06', nombre: 'Personaje 06', rareza: 'amarillo', img: 'assets/cartas/c06.jpg' },
-  { id: 'c07', nombre: 'Personaje 07', rareza: 'morado', img: 'assets/cartas/c07.jpg' },
-  { id: 'c08', nombre: 'Personaje 08', rareza: 'amarillo', img: 'assets/cartas/c08.jpg' },
-  { id: 'c09', nombre: 'Personaje 09', rareza: 'amarillo', img: 'assets/cartas/c09.jpg' },
-  { id: 'c10', nombre: 'Personaje 10', rareza: 'rojo', img: 'assets/cartas/c10.jpg' },
-  { id: 'c11', nombre: 'Personaje 11', rareza: 'morado', img: 'assets/cartas/c11.jpg' },
-  { id: 'c12', nombre: 'Personaje 12', rareza: 'verde', img: 'assets/cartas/c12.jpg' },
-  { id: 'c13', nombre: 'Personaje 13', rareza: 'azul', img: 'assets/cartas/c13.jpg' },
-  { id: 'c14', nombre: 'Personaje 14', rareza: 'rojo', img: 'assets/cartas/c14.jpg' },
-  { id: 'c15', nombre: 'Personaje 15', rareza: 'amarillo', img: 'assets/cartas/c15.jpg' },
-  { id: 'c16', nombre: 'Personaje 16', rareza: 'verde', img: 'assets/cartas/c16.jpg' },
-  { id: 'c17', nombre: 'Personaje 17', rareza: 'azul', img: 'assets/cartas/c17.jpg' },
-  { id: 'c18', nombre: 'Personaje 18', rareza: 'rojo', img: 'assets/cartas/c18.jpg' },
-  { id: 'c19', nombre: 'Personaje 19', rareza: 'morado', img: 'assets/cartas/c19.jpg' },
-  { id: 'c20', nombre: 'Personaje 20', rareza: 'verde', img: 'assets/cartas/c20.jpg' },
-  { id: 'c21', nombre: 'Personaje 21', rareza: 'blanca', img: 'assets/cartas/c21.jpg' },
-  { id: 'c22', nombre: 'Personaje 22', rareza: 'rojo', img: 'assets/cartas/c22.jpg' },
-  { id: 'c23', nombre: 'Personaje 23', rareza: 'morado', img: 'assets/cartas/c23.jpg' },
-  { id: 'c24', nombre: 'Personaje 24', rareza: 'verde', img: 'assets/cartas/c24.jpg' },
-  { id: 'c25', nombre: 'Personaje 25', rareza: 'amarillo', img: 'assets/cartas/c25.jpg' },
-  { id: 'c26', nombre: 'Personaje 26', rareza: 'azul', img: 'assets/cartas/c26.jpg' },
-  { id: 'c27', nombre: 'Personaje 27', rareza: 'azul', img: 'assets/cartas/c27.jpg' },
-  { id: 'c28', nombre: 'Personaje 28', rareza: 'amarillo', img: 'assets/cartas/c28.jpg' },
-  { id: 'c29', nombre: 'Personaje 29', rareza: 'blanca', img: 'assets/cartas/c29.jpg' },
-  { id: 'c30', nombre: 'Personaje 30', rareza: 'morado', img: 'assets/cartas/c30.jpg' },
-  { id: 'c31', nombre: 'Personaje 31', rareza: 'blanca', img: 'assets/cartas/c31.jpg' },
-  { id: 'c32', nombre: 'Personaje 32', rareza: 'azul', img: 'assets/cartas/c32.jpg' },
-  { id: 'c33', nombre: 'Personaje 33', rareza: 'blanca', img: 'assets/cartas/c33.jpg' },
-  { id: 'c34', nombre: 'Personaje 34', rareza: 'rojo', img: 'assets/cartas/c34.jpg' },
-  { id: 'c35', nombre: 'Personaje 35', rareza: 'amarillo', img: 'assets/cartas/c35.jpg' },
-  { id: 'c36', nombre: 'Personaje 36', rareza: 'amarillo', img: 'assets/cartas/c36.jpg' },
-  { id: 'c37', nombre: 'Vehículo 37', rareza: 'blanca', img: 'assets/cartas/c37.jpg' },
-  { id: 'c38', nombre: 'Vehículo 38', rareza: 'blanca', img: 'assets/cartas/c38.jpg' },
-  { id: 'c39', nombre: 'Vehículo 39', rareza: 'blanca', img: 'assets/cartas/c39.jpg' },
-  { id: 'c40', nombre: 'Vehículo 40', rareza: 'blanca', img: 'assets/cartas/c40.jpg' }
-];
+CP.CARTAS = [];                                              // se llena al iniciar
+CP.FUENTES = ['assets/cartas.zip', 'assets/carros.zip'];     // zips que se leen en memoria (pueden tener zips dentro)
+// Para forzar la rareza de una carta concreta, descomenta y edita (id = nombre del archivo sin .webp). Ojo: el resto no se reajusta.
+CP.RAREZA_FIJA = {
+  // c01: 'rojo',
+};
