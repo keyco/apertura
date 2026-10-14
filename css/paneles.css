@@ -1,0 +1,15 @@
+#esencia{color:#ffd400;font-weight:700;font-size:18px;text-shadow:0 0 8px #ffd40088}
+nav em{font-style:normal;background:#ff2a2a;color:#fff;border-radius:10px;padding:0 6px;font-size:12px;margin-left:4px}
+.btn:disabled{opacity:.4;cursor:default;box-shadow:none}
+select.btn{padding:9px 10px}
+.panel{background:#09121b;border:1px solid #1c3340;border-radius:12px;padding:16px;margin-bottom:20px}
+.panel h2{margin:0 0 10px;font-size:16px;letter-spacing:3px;color:#4ef}
+.nota{color:#8aa;font-size:13px;margin:0 0 12px}
+.fila-taller{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px solid #12222c}
+.fila-taller b{min-width:110px;color:var(--c)}.fila-taller span{margin-right:auto;color:#9ab}
+.resultado{text-align:center;margin-top:14px}.resultado .carta{margin:auto}
+.celda{display:flex;flex-direction:column;gap:6px}.celda .btn{padding:6px;font-size:12px}
+.mision{display:flex;gap:14px;align-items:center;padding:10px 0;border-top:1px solid #12222c}
+.mision .info{flex:1;display:flex;flex-direction:column;gap:4px}.mision b{color:var(--c)}.mision small{color:#8aa}
+.mision.hecha{opacity:.5}
+.prog{height:8px;background:#12222c;border-radius:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--c);box-shadow:0 0 8px var(--c)}
