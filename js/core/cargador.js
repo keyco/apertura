@@ -33,6 +33,16 @@ CP.Cargador = (() => {
     return {
       progreso(txt, f) { crear(); el.hidden = false; q('.msg').textContent = txt; q('.barra-carga').hidden = false; q('.barra-carga i').style.width = Math.round((f || 0) * 100) + '%'; },
       error(txt) { crear(); el.hidden = false; q('.error').hidden = false; q('.error').textContent = txt; },
+      aviso(txt) {
+        let aviso = document.getElementById('aviso-activos');
+        if (!aviso) {
+          aviso = document.createElement('aside'); aviso.id = 'aviso-activos'; aviso.className = 'aviso-activos'; aviso.setAttribute('role', 'status');
+          const mensaje = document.createElement('span'), cerrar = document.createElement('button');
+          cerrar.type = 'button'; cerrar.textContent = '×'; cerrar.setAttribute('aria-label', 'Cerrar aviso');
+          cerrar.onclick = () => aviso.remove(); aviso.append(mensaje, cerrar); document.body.appendChild(aviso);
+        }
+        aviso.querySelector('span').textContent = txt;
+      },
       ocultar() { if (el) el.hidden = true; },
       pedir() {
         crear(); el.hidden = false; const caja = q('.soltar'), inp = caja.querySelector('input');
@@ -93,7 +103,13 @@ CP.Cargador = (() => {
       if (typeof DecompressionStream === 'undefined') throw new Error('Este navegador es demasiado antiguo para leer .zip (falta DecompressionStream). Usa una versión reciente de Chrome, Edge, Firefox o Safari.');
       ui.progreso('Cargando cartas…', 0);
       let zips = null, origen = 'red';
-      try { zips = await Promise.all(CP.FUENTES.map(bajar)); } catch (e) { zips = null; }   // servidor http: los zip de assets/
+      const resultados = await Promise.all(CP.FUENTES.map(async url => {
+        try { return { zip: await bajar(url), error: null }; }
+        catch (error) { return { zip: null, error: `${url}: ${error.message}` }; }
+      }));
+      const errores = resultados.filter(x => x.error).map(x => x.error);
+      zips = resultados.map(x => x.zip).filter(Boolean);
+      if (!zips.length) zips = null;
       if (!zips) { zips = await Cache.leer(); origen = 'cache'; }                           // file://: los que se eligieron antes
       for (;;) {
         try {
@@ -101,7 +117,9 @@ CP.Cargador = (() => {
           const cartas = await procesar(zips);
           if (!cartas.length) throw new Error('No se encontró ninguna imagen .webp dentro de los zip.');
           if (origen === 'archivos') await Cache.guardar(zips);
-          this.origen = origen; ui.ocultar(); return cartas;
+          this.origen = origen; ui.ocultar();
+          if (origen === 'red' && errores.length) ui.aviso(`No se pudieron cargar algunos archivos; se usarán los demás. ${errores.join(' · ')}`);
+          return cartas;
         } catch (e) {
           console.error(e); if (origen === 'cache') await Cache.borrar();
           ui.error(e.message); zips = null;              // se vuelve a pedir

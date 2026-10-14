@@ -7,13 +7,17 @@ CP.Apertura = {
     const sel = root.querySelector('.selector');
     CP.CAJAS.forEach(caja => {
       const b = document.createElement('button'); b.className = 'btn';
-      b.textContent = `${caja.nombre} · ${caja.precio ? '◈ ' + caja.precio : 'Gratis'}`;
+      const disponible = CP.CARTAS.some(c => !caja.grupo || c.grupo === caja.grupo);
+      b.textContent = `${caja.nombre} · ${disponible ? (caja.precio ? '◈ ' + caja.precio : 'Gratis') : 'Sin cartas cargadas'}`;
+      b.disabled = !disponible;
+      if (!disponible) b.title = `No se cargaron cartas del grupo ${caja.grupo}.`;
       b.style.setProperty('--c', caja.color); b.onclick = () => this.mostrarCaja(caja); sel.appendChild(b);
     });
     const d = document.createElement('select'); d.className = 'btn'; d.title = 'Dorso de las cartas';
     d.innerHTML = CP.DORSOS.map(x => `<option value="${x.id}">Dorso: ${x.nombre}</option>`).join('');
     d.value = CP.Inv.dorso(); d.onchange = () => { CP.Inv.setDorso(d.value); CP.aplicarDorso(); };
-    sel.appendChild(d); this.mostrarCaja(CP.CAJAS[0]);
+    sel.appendChild(d);
+    this.mostrarCaja(CP.CAJAS.find(caja => CP.CARTAS.some(c => !caja.grupo || c.grupo === caja.grupo)) || CP.CAJAS[0]);
   },
   mostrarCaja(caja) {
     const escena = this.root.querySelector('.escena'); this.root.querySelector('.acciones').innerHTML = ''; escena.innerHTML = '';
@@ -23,6 +27,10 @@ CP.Apertura = {
   },
   abrir(caja, el) {
     if (el.classList.contains('abriendo')) return;
+    if (!CP.CARTAS.some(c => !caja.grupo || c.grupo === caja.grupo)) {
+      el.querySelector('small').textContent = `No hay cartas cargadas para ${caja.nombre}.`;
+      return;
+    }
     if (!CP.Eco.comprar(caja)) { el.querySelector('small').textContent = 'Esencia insuficiente: usa «+ Agregar» arriba'; return; }
     const cartas = CP.abrirCaja(caja), mejor = cartas.reduce((a, c) => CP.rangoRareza(c.rareza) > CP.rangoRareza(a.rareza) ? c : a);
     const color = CP.rareza(mejor.rareza).color;
