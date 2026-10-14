@@ -16,7 +16,13 @@
     <button data-v="taller">Taller</button>
     <button data-v="misiones">Misiones <em id="badge" hidden></em></button>
   </nav>
-  <div id="esencia" title="Esencia"></div>
+  <div class="bolsa"><div id="esencia" title="Esencia"></div>
+    <button class="btn" id="btn-agregar" title="Agregar esencia">+ Agregar</button>
+    <div id="menu-agregar" hidden>
+      <b>Agregar esencia</b>
+      <div class="opc"><button class="btn" data-n="100">+100</button><button class="btn" data-n="500">+500</button><button class="btn" data-n="1000">+1000</button><button class="btn" data-n="5000">+5000</button></div>
+      <div class="otra"><input id="agregar-n" type="number" min="1" step="1" placeholder="Otra cantidad"><button class="btn" id="agregar-ok">Agregar</button></div>
+    </div></div>
 </header>
 <main>
   <section id="v-apertura"></section>

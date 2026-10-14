@@ -2,7 +2,9 @@
 window.CP = window.CP || {};
 CP.aplicarDorso = function () {
   const d = CP.DORSOS.find(x => x.id === CP.Inv.dorso()) || CP.DORSOS[0];
-  document.documentElement.style.setProperty('--dorso', `url("${d.img}")`);
+  // Ruta absoluta: una url() relativa dentro de una variable CSS se resuelve respecto a css/, no a index.html
+  const ruta = new URL(d.img, document.baseURI).href;
+  document.documentElement.style.setProperty('--dorso', `url("${ruta}")`);
 };
 CP.crearCarta = function (carta, { oculta = false, bloqueada = false } = {}) {
   const r = CP.rareza(carta.rareza), el = document.createElement('div');

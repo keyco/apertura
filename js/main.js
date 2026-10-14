@@ -13,5 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x === b));
     Object.entries(vistas).forEach(([k, v]) => v.hidden = k !== b.dataset.v);
   });
+  // Agregar esencia
+  const menu = document.getElementById('menu-agregar'), inp = document.getElementById('agregar-n');
+  const agregar = n => { if (CP.Eco.agregar(n)) { CP.refrescar(); inp.value = ''; menu.hidden = true; } };
+  document.getElementById('btn-agregar').onclick = e => { e.stopPropagation(); menu.hidden = !menu.hidden; };
+  menu.onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => menu.hidden = true);
+  menu.querySelectorAll('[data-n]').forEach(b => b.onclick = () => agregar(b.dataset.n));
+  document.getElementById('agregar-ok').onclick = () => agregar(inp.value);
+  inp.onkeydown = e => { if (e.key === 'Enter') agregar(inp.value); };
   CP.refrescar();
 });

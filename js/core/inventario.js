@@ -17,6 +17,7 @@ CP.Inv = (() => {
     gastar(n) { if (d.esencia < n) return false; d.esencia -= n; guardar(); return true; },
     inc(k) { d.n[k] = (d.n[k] || 0) + 1; guardar(); },
     n: k => d.n[k] || 0,
+    cajasAbiertas: () => d.n.cajas || 0,
     reclamada: id => !!d.reclamadas[id],
     reclamar(id) { d.reclamadas[id] = true; guardar(); },
     dorso: () => d.dorso,

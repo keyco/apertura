@@ -23,9 +23,10 @@ CP.Apertura = {
   },
   abrir(caja, el) {
     if (el.classList.contains('abriendo')) return;
-    if (!CP.Eco.comprar(caja)) { el.querySelector('small').textContent = 'Esencia insuficiente'; return; }
+    if (!CP.Eco.comprar(caja)) { el.querySelector('small').textContent = 'Esencia insuficiente: usa «+ Agregar» arriba'; return; }
     const cartas = CP.abrirCaja(caja), mejor = cartas.reduce((a, c) => CP.rangoRareza(c.rareza) > CP.rangoRareza(a.rareza) ? c : a);
     const color = CP.rareza(mejor.rareza).color;
+    CP.refrescar([]);
     el.classList.add('abriendo');                                   // 1) sacude
     setTimeout(() => {                                              // 2) destello
       const f = document.createElement('div'); f.className = 'destello'; f.style.setProperty('--c', color);
