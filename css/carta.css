@@ -1,0 +1,29 @@
+/* Carta */
+.carta{--w:210px;width:var(--w);aspect-ratio:896/1200;position:relative;perspective:900px;cursor:pointer;user-select:none}
+.grid .carta{width:100%}
+.giro{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d}
+.carta.oculta .giro{transform:rotateY(180deg)}
+.cara,.dorso{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;overflow:hidden}
+.arte,.marco{position:absolute;inset:0;width:100%;height:100%;display:block}
+.marco{pointer-events:none}
+.carta:not(.oculta) .cara{box-shadow:0 0 22px -2px var(--c)}
+.etq{position:absolute;bottom:3%;left:0;right:0;text-align:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);text-shadow:0 0 6px #000,0 0 6px var(--c)}
+.dorso{transform:rotateY(180deg);background:repeating-linear-gradient(45deg,#0a1a26 0 10px,#0d2433 10px 20px);border:2px solid #2a6a80;display:flex;align-items:center;justify-content:center;font-size:64px;color:#4ef;text-shadow:0 0 16px #4ef}
+.carta.bloqueada .arte{filter:brightness(0) saturate(0)}
+.carta.bloqueada .marco{opacity:.35}.carta.bloqueada .etq{display:none}.carta.bloqueada .cara{box-shadow:none}
+.cant{position:absolute;top:6px;right:8px;font-style:normal;font-size:12px;background:#000a;padding:2px 6px;border-radius:6px;color:#fff;z-index:2}
+/* Apertura */
+.fila{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.fila .carta{animation:entra .5s both}
+@keyframes entra{from{opacity:0;transform:translateY(40px) scale(.8)}to{opacity:1;transform:none}}
+.caja{width:230px;height:260px;position:relative;cursor:pointer;--c:#4ef;filter:drop-shadow(0 0 18px var(--c))}
+.caja .cuerpo{position:absolute;bottom:0;left:0;right:0;height:170px;border:3px solid var(--c);border-radius:10px;background:linear-gradient(#0c1c28,#050a10);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--c)}
+.caja .cuerpo small{color:#9ab}
+.caja .tapa{position:absolute;top:30px;left:-8px;right:-8px;height:70px;border:3px solid var(--c);border-radius:10px;background:linear-gradient(#10283a,#08121b);transform-origin:left bottom;transition:transform .5s}
+.caja:hover{animation:flota 1s infinite alternate}
+@keyframes flota{to{transform:translateY(-8px)}}
+.caja.abriendo{animation:tiembla .9s}
+@keyframes tiembla{0%,100%{transform:none}20%{transform:rotate(-4deg)}40%{transform:rotate(4deg)}60%{transform:rotate(-6deg) scale(1.05)}80%{transform:rotate(6deg) scale(1.08)}}
+.caja.abierta .tapa{transform:rotate(-70deg) translateY(-20px)}
+.caja.abierta::after{content:'';position:absolute;inset:-60px;background:radial-gradient(circle,var(--c),transparent 65%);animation:destello .6s forwards;pointer-events:none}
+@keyframes destello{from{opacity:0;transform:scale(.3)}50%{opacity:1}to{opacity:0;transform:scale(2)}}

@@ -1,0 +1,12 @@
+*{box-sizing:border-box}
+html,body{margin:0;background:#06080f;color:#dff;font-family:system-ui,sans-serif;min-height:100%}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid #1c3340;flex-wrap:wrap;gap:8px}
+h1{margin:0;font-size:20px;letter-spacing:6px;color:#4ef}
+nav button,.btn,.chip{background:#0b1620;color:#dff;border:1px solid var(--c,#2a5566);border-radius:8px;padding:9px 16px;cursor:pointer;font:inherit}
+nav button.on,.chip.on{background:#123040;box-shadow:0 0 10px var(--c,#4ef)}
+.btn:hover,.chip:hover{box-shadow:0 0 12px var(--c,#4ef)}
+main{padding:20px;max-width:1200px;margin:auto}
+.selector,.acciones{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.escena{min-height:460px;display:flex;align-items:center;justify-content:center}
+.barra{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.barra span{margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}

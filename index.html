@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apertura de cajas</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/carta.css">
+</head>
+<body>
+<header><h1>CAJAS</h1>
+  <nav><button class="on" data-v="apertura">Abrir cajas</button><button data-v="coleccion">Colección</button></nav>
+</header>
+<main>
+  <section id="v-apertura"></section>
+  <section id="v-coleccion" hidden></section>
+</main>
+<!-- Módulos (orden importa; sin dependencias externas, funciona abriendo el archivo directo) -->
+<script src="js/config/rarezas.js"></script>
+<script src="js/data/cartas.js"></script>
+<script src="js/data/cajas.js"></script>
+<script src="js/core/rng.js"></script>
+<script src="js/core/gacha.js"></script>
+<script src="js/core/inventario.js"></script>
+<script src="js/ui/carta.js"></script>
+<script src="js/ui/apertura.js"></script>
+<script src="js/ui/coleccion.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
